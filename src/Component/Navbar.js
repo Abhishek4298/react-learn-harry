@@ -3,21 +3,13 @@ import { Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 const NavbarLink = (props) => {
     return (<>
         <Navbar bg={props.mode} variant={props.mode}>
-            <Navbar.Brand href="#home">Demo</Navbar.Brand>
+            <Navbar.Brand href="#home">AB</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/contact-us">Contact Us</Nav.Link>
-                    <Nav.Link href="/about-us">About Us</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
-
+                    <Nav.Link href="/">{props.home}</Nav.Link>
+                    <Nav.Link href="/contactUs">{props.contact}</Nav.Link>
+                    <Nav.Link href="/newsHeadlines">{props.news}</Nav.Link>
                 </Nav>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -32,10 +24,10 @@ const NavbarLink = (props) => {
 }
 
 NavbarLink.defaultProps = {
-    title: "Demo",
+    title: "AB",
     home: "Home",
     contact: "Contact",
-    about: "About",
+    news: "News",
 }
 
 export default NavbarLink;

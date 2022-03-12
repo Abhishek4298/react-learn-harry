@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const Home = (props) => {
+    document.title = "portfolio - Home"
     const [textArea, setTextArea] = useState("")
     const captialText = () => {
         const newTextArea = textArea.toUpperCase();

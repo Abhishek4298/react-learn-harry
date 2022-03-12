@@ -1,5 +1,5 @@
 import noImageFound from "../noImageFound.jpeg";
-const AboutCard = (props) => {
+const Card = (props) => {
     return (
         <div className="card mb-2" style={{ width: "18rem" }}>
             <div className="card-body" >
@@ -12,4 +12,4 @@ const AboutCard = (props) => {
     )
 }
 
-export default AboutCard
+export default Card

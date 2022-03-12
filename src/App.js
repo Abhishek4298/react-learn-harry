@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './Component/Home';
-import AboutUs from './Component/AboutUs';
+import NewsArticle from './Component/NewsArticle';
 import ContactUs from './Component/ContactUs';
 import NavbarLink from './Component/Navbar';
 import { useState } from 'react';
@@ -64,7 +64,7 @@ function App() {
                   />
                   <Route
                     exact
-                    path="/contact-us"
+                    path="/contactUs"
                     element={
                       <>
                         <ContactUs
@@ -75,11 +75,13 @@ function App() {
                   />
                   <Route
                     exact
-                    path="/about-us"
+                    path="/newsHeadlines"
                     element={
                       <>
-                        <AboutUs
+                        <NewsArticle
                           theme={theme}
+                          pageSize={6}
+                          countryName="in"
                         />
                       </>
                     }
