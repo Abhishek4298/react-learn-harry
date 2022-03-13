@@ -3,39 +3,41 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Loading from "./Loading";
 import PropTypes from 'prop-types'
+import InfiniteScroll from "react-infinite-scroll-component";
 
-const NewsArticle = ({ theme, pageSize, countryName }) => {
+const NewsArticle = ({ theme, pageSize, countryName, setProgress }) => {
     document.title = "portfolio - TopNews"
-    let [news, setNews] = useState([])
-    let [page, setPage] = useState(1);
-    let [loading, setLoading] = useState(false);
+    const [news, setNews] = useState([])
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [totalResults, setTotalResults] = useState(0)
 
-    const handleNext = async () => {
+
+    const updateNews = async () => {
+        setProgress(10);
+        const URL = `https://newsapi.org/v2/top-headlines?country=${countryName}&apiKey=d3229a5381fd468196e6b1fd25c95e23&page=${page}&pageSize=${pageSize}`;
         setLoading(true)
-        const URL = `https://newsapi.org/v2/top-headlines?country=${countryName}&apiKey=d3229a5381fd468196e6b1fd25c95e23&page=${page + 1}&pageSize=${pageSize}`
-        const nextResults = await axios(URL);
+        let newsData = await axios(URL);
+        setProgress(30);
+        setProgress(70);
+        setNews(newsData.data.articles)
+        setTotalResults(newsData.data.totalResults)
         setLoading(false)
-        setNews(nextResults.data.articles)
-        setPage(page + 1)
+        setProgress(100);
     }
-    const handlePrevious = async () => {
-        setLoading(true)
-        const URL = `https://newsapi.org/v2/top-headlines?country=${countryName}&apiKey=d3229a5381fd468196e6b1fd25c95e23&page=${page - 1}&pageSize=${pageSize}`
-        const previousResult = await axios(URL);
-        setLoading(false)
-        setNews(previousResult.data.articles)
-        setPage(page - 1)
-    }
+
     useEffect(() => {
-        const getResults = async () => {
-            setLoading(true)
-            const URL = `https://newsapi.org/v2/top-headlines?country=${countryName}&apiKey=d3229a5381fd468196e6b1fd25c95e23&pageSize=${pageSize}`
-            const results = await axios(URL);
-            setLoading(false)
-            setNews(results.data.articles)
-        }
-        getResults()
+        updateNews();
+        // eslint-disable-next-line
     }, [])
+
+    const fetchMoreData = async () => {
+        const URL = `https://newsapi.org/v2/top-headlines?country=${countryName}&apiKey=d3229a5381fd468196e6b1fd25c95e23&page=${page + 1}&pageSize=${pageSize}`;
+        setPage(page + 1)
+        let moreNewsData = await axios(URL);
+        setNews(news.concat(moreNewsData.data.articles))
+        setTotalResults(moreNewsData.data.totalResults)
+    };
 
     return (<>
         <div style={{ color: theme === "dark" && "black" }} className="container">
@@ -44,25 +46,28 @@ const NewsArticle = ({ theme, pageSize, countryName }) => {
                 <hr />
             </div>
             {loading && <Loading />}
-            <div className="row">
-                {news.map((el) => {
-                    return (
-                        <>
-                            <div className="col-md-4">
-                                <div key={el.url}>
-                                    <Card image={el.urlToImage} title={el.title} description={el.description} url={el.url} />
-                                </div>
-                            </div>
-                        </>
-                    )
-                })}
-            </div>
-        </div>
-        <div className="container d-flex justify-content-between">
-            <button disabled={page <= 1} onClick={handlePrevious} type="button" className="btn btn-danger">&larr; Previous</button>
-            <button onClick={handleNext} type="button" className="btn btn-danger">next &rarr;</button>
-        </div>
 
+            <InfiniteScroll
+                dataLength={news.length}
+                next={fetchMoreData}
+                hasMore={news.length !== totalResults}
+                loader={<Loading />}
+            >
+                <div className="container">
+                    <div className="row">
+                        {news.map((el) => {
+                            return (
+                                <>
+                                    <div className="col-md-4" key={el.url}>
+                                        <Card image={el.urlToImage} title={el.title} description={el.description} url={el.url} />
+                                    </div>
+                                </>
+                            )
+                        })}
+                    </div>
+                </div>
+            </InfiniteScroll>
+        </div>
     </>);
 }
 

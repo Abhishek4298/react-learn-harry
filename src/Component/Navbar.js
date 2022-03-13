@@ -1,9 +1,9 @@
-import { Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
+import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 
 const NavbarLink = (props) => {
     return (<>
-        <Navbar bg={props.mode} variant={props.mode}>
-            <Navbar.Brand href="#home">AB</Navbar.Brand>
+        <Navbar className="fixed-top" bg={props.mode} variant={props.mode}>
+            <Navbar.Brand href="/">AB</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

@@ -10,10 +10,12 @@ import ContactUs from './Component/ContactUs';
 import NavbarLink from './Component/Navbar';
 import { useState } from 'react';
 import Alert from './Component/Alert';
+import LoadingBar from 'react-top-loading-bar'
 
 function App() {
   let [theme, setTheme] = useState("light")
   let [alert, setAlert] = useState(null)
+  let [progress, setProgress] = useState(0)
 
   const showAlert = ((message, type) => {
     setAlert({
@@ -42,6 +44,11 @@ function App() {
       <div>
         <NavbarLink mode={theme}
           toggleMode={toggleMode}
+        />
+        <LoadingBar
+          height={3}
+          color='#f11946'
+          progress={progress}
         />
         <Alert alert={alert} />
         <div className="row">
@@ -82,7 +89,7 @@ function App() {
                           theme={theme}
                           pageSize={6}
                           countryName="in"
-                        />
+                          setProgress={setProgress} />
                       </>
                     }
                   />
