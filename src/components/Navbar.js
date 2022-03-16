@@ -11,13 +11,21 @@ const NavbarLink = (props) => {
                     <Nav.Link href="/contactUs">{props.contact}</Nav.Link>
                     <Nav.Link href="/newsHeadlines">{props.news}</Nav.Link>
                 </Nav>
-                <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                </Form>
-                <div className="form-check form-switch">
-                    <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                    <label className={`form-check-label text-${props.mode === 'dark' ? 'light' : 'dark'}`} htmlFor="flexSwitchCheckDefault">Enable dark props.mode</label>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%"
+                }}>
+                    <Form>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                    </Form>
+                    <div style={{ marginRight: "223px" }} className="form-check form-switch">
+                        <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                        <label className={`form-check-label text-${props.mode === 'dark' ? 'light' : 'dark'}`} htmlFor="flexSwitchCheckDefault">Enable dark props.mode</label>
+                    </div>
                 </div>
+
+
             </Navbar.Collapse>
         </Navbar>
     </>);

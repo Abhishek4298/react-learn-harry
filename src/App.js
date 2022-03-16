@@ -4,12 +4,12 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Home from './Component/Home';
-import NewsArticle from './Component/NewsArticle';
-import ContactUs from './Component/ContactUs';
-import NavbarLink from './Component/Navbar';
+import Home from './components/Home';
+import NewsArticle from './components/NewsArticle';
+import ContactUs from './components/ContactUs';
+import NavbarLink from './components/Navbar';
 import { useState } from 'react';
-import Alert from './Component/Alert';
+import Alert from './components/Alert';
 import LoadingBar from 'react-top-loading-bar'
 
 function App() {
