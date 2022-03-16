@@ -10,6 +10,7 @@ const NavbarLink = (props) => {
                     <Nav.Link href="/">{props.home}</Nav.Link>
                     <Nav.Link href="/contactUs">{props.contact}</Nav.Link>
                     <Nav.Link href="/newsHeadlines">{props.news}</Nav.Link>
+                    <Nav.Link href="/form">{props.form}</Nav.Link>
                 </Nav>
                 <div style={{
                     display: "flex",
@@ -36,6 +37,7 @@ NavbarLink.defaultProps = {
     home: "Home",
     contact: "Contact",
     news: "News",
+    form: "Form"
 }
 
 export default NavbarLink;

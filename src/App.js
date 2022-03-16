@@ -11,6 +11,7 @@ import NavbarLink from './components/Navbar';
 import { useState } from 'react';
 import Alert from './components/Alert';
 import LoadingBar from 'react-top-loading-bar'
+import PhoneBookForm from './components/PhoneBookForm';
 
 function App() {
   let [theme, setTheme] = useState("light")
@@ -76,6 +77,16 @@ function App() {
                       <>
                         <ContactUs
                           theme={theme}
+                        />
+                      </>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/form"
+                    element={
+                      <>
+                        <PhoneBookForm
                         />
                       </>
                     }
