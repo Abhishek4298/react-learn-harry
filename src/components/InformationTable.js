@@ -46,17 +46,20 @@ const InformationTable = () => {
             </thead>
             <tbody>
                 {
-                    tableConent.map((el, id) => {
-                        <tr key={id}>
-                            {/* <td>{el.userFirstname}</td> */}
-                            {/* <td>{userLastname}</td>
-                            <td>{userPhone}</td> */}
-                        </tr>
+                    tableConent.map((el) => {
+                        return <>
+                            <tr>
+                                <td>{el.userFirstname}</td>
+                                <td>{el.userLastname}</td>
+                                <td>{el.userPhone}</td>
+                            </tr>
+
+                        </>
                     })
                 }
+
             </tbody>
         </table>
     </>);
 }
-
 export default InformationTable;

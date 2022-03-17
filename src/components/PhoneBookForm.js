@@ -35,14 +35,15 @@ const PhoneBookForm = () => {
         }
     }
     const [userFirstname, setUserFirstname] = useState("Coder");
-    const [userLastname, setUserLastname] = useState("Byte");
+    const [userLastname, setUserLastname] = useState("Developer");
     const [userPhone, setUserPhone] = useState(8885559999);
 
     const handleClick = (evt) => {
         evt.preventDefault();
-        let userList = JSON.parse(localStorage.getItem('user'));
-        if (!userList) {
-            userList = []
+        let getFromLocalStorage = JSON.parse(localStorage.getItem('user'))
+        let userList = []
+        if (getFromLocalStorage) {
+            userList = getFromLocalStorage
         }
         const formData = {
             userFirstname,
