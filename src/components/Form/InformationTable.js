@@ -33,8 +33,6 @@ const InformationTable = () => {
             }
         }
     }
-
-
     return (<>
         <table style={style.table} className='informationTable'>
             <thead>
@@ -46,16 +44,17 @@ const InformationTable = () => {
             </thead>
             <tbody>
                 {
-                    tableConent.map((el) => {
-                        return <>
-                            <tr>
-                                <td>{el.userFirstname}</td>
-                                <td>{el.userLastname}</td>
-                                <td>{el.userPhone}</td>
-                            </tr>
-
-                        </>
-                    })
+                    tableConent ?
+                        tableConent.map((el, id) => {
+                            return <>
+                                <tr key={id}>
+                                    <td>{el.userFirstname}</td>
+                                    <td>{el.userLastname}</td>
+                                    <td>{el.userPhone}</td>
+                                </tr>
+                            </>
+                        })
+                        : <h2>No Record FOUND </h2>
                 }
 
             </tbody>

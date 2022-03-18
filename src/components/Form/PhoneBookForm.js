@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InformationTable from './InformationTable';
+import Progress from 'react-progressbar';
 
 const PhoneBookForm = () => {
     const style = {
@@ -37,6 +38,8 @@ const PhoneBookForm = () => {
     const [userFirstname, setUserFirstname] = useState("Coder");
     const [userLastname, setUserLastname] = useState("Developer");
     const [userPhone, setUserPhone] = useState(8885559999);
+    const [progressValue, setProgressValue] = useState(0);
+    const [running, setRunning] = useState(false);
 
     const handleClick = (evt) => {
         evt.preventDefault();
@@ -53,6 +56,18 @@ const PhoneBookForm = () => {
         userList.push(formData)
         localStorage.setItem('user', JSON.stringify(userList));
     }
+    useEffect(() => {
+        setRunning(true)
+        if (running) {
+            setTimeout(() => {
+                setProgressValue((progressValue) => progressValue < 100 ?
+                    progressValue = progressValue + 10 : setProgressValue(0))
+                setRunning(false)
+            }, 1000);
+
+        }
+    }, [running])
+
     return (<>
         <form onSubmit={e => { e.preventDefault() }} style={style.form.container}>
             <label>First name:</label>
@@ -66,6 +81,7 @@ const PhoneBookForm = () => {
                 onChange={(e) => setUserFirstname(e.target.value)}
 
             />
+
             <br />
             <label>Last name:</label>
             <br />
@@ -88,6 +104,7 @@ const PhoneBookForm = () => {
                 value={userPhone}
                 onChange={(e) => setUserPhone(e.target.value)}
             />
+
             <br />
             <input
                 onClick={handleClick}
@@ -97,6 +114,8 @@ const PhoneBookForm = () => {
                 value='Add User'
             />
         </form>
+        <label htmlFor="progressBars">Username</label>
+        <Progress completed={progressValue} />
         <InformationTable />
     </>);
 }

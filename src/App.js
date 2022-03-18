@@ -11,7 +11,7 @@ import NavbarLink from './components/Navbar';
 import { useState } from 'react';
 import Alert from './components/Alert';
 import LoadingBar from 'react-top-loading-bar'
-import PhoneBookForm from './components/PhoneBookForm';
+import PhoneBookForm from './components/Form/PhoneBookForm';
 
 function App() {
   let [theme, setTheme] = useState("light")
