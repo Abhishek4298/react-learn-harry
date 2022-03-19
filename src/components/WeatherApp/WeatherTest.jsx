@@ -43,11 +43,11 @@ const WeatherTest = () => {
   // fetch when search is changed
   useEffect(() => {
     fetchCity();
+    // eslint-disable-next-line
   }, [search]);
 
   return (
     <>
-      {console.log('======> :: city', city)}
       <Card className='mx-auto mt-5'>
         <Card.Body>
           <Card.Title>

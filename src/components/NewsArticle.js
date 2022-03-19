@@ -12,7 +12,6 @@ const NewsArticle = ({ theme, pageSize, countryName, setProgress }) => {
     const [loading, setLoading] = useState(false);
     const [totalResults, setTotalResults] = useState(0)
 
-
     const updateNews = async () => {
         setProgress(10);
         const URL = `https://newsapi.org/v2/top-headlines?country=${countryName}&apiKey=d3229a5381fd468196e6b1fd25c95e23&page=${page}&pageSize=${pageSize}`;

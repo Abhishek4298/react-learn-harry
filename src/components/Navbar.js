@@ -1,12 +1,21 @@
 import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+// import { useEffect } from 'react';
+// import { useLocation } from 'react-router-dom';
 
 const NavbarLink = (props) => {
+    // const location = useLocation();
+    // useEffect(() => {
+    //     console.log("======> :: location", location);
+    //     // eslint-disable-next-line
+    // }, [location])
+
     return (<>
         <Navbar className="fixed-top" bg={props.mode} variant={props.mode}>
             <Navbar.Brand href="/">AB</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
+                <Nav activeKey="/newsHeadlines"
+                    className="mr-auto">
                     <Nav.Link href="/">{props.home}</Nav.Link>
                     <Nav.Link href="/contactUs">{props.contact}</Nav.Link>
                     <Nav.Link href="/newsHeadlines">{props.news}</Nav.Link>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 const InformationTable = () => {
     let tableConent = JSON.parse(localStorage.getItem('user'));
     const style = {
