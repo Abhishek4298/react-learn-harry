@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 const InformationTable = () => {
-    let [tableConent, setTableConent] = useState(JSON.parse(localStorage.getItem('user')))
+    let tableConent = JSON.parse(localStorage.getItem('user'));
     const style = {
         table: {
             borderCollapse: 'collapse'
@@ -54,9 +54,11 @@ const InformationTable = () => {
                                 </tr>
                             </>
                         })
-                        : <h2>No Record FOUND </h2>
+                        :
+                        <div>
+                            <h2 className='text-center'>No Record FOUND </h2>
+                        </div>
                 }
-
             </tbody>
         </table>
     </>);

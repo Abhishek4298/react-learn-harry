@@ -12,6 +12,9 @@ import { useState } from 'react';
 import Alert from './components/Alert';
 import LoadingBar from 'react-top-loading-bar'
 import PhoneBookForm from './components/Form/PhoneBookForm';
+import NoteState from './context/NoteState';
+import WeatherTest from './components/WeatherApp/WeatherTest.jsx';
+
 
 function App() {
   let [theme, setTheme] = useState("light")
@@ -42,6 +45,7 @@ function App() {
   }
   return (
     <>
+      {/* <WeatherTest /> */}
       <div>
         <NavbarLink mode={theme}
           toggleMode={toggleMode}
@@ -54,60 +58,62 @@ function App() {
         <Alert alert={alert} />
         <div className="row">
           <div className="col-md-12"></div>
-          <Router>
-            <>
-              <Routes>
-                <>
-                  <Route
-                    exact
-                    path="/"
-                    element={
-                      <>
-                        <Home
-                          theme={theme}
-                          showAlert={showAlert}
-                        />
-                      </>
-                    }
-                  />
-                  <Route
-                    exact
-                    path="/contactUs"
-                    element={
-                      <>
-                        <ContactUs
-                          theme={theme}
-                        />
-                      </>
-                    }
-                  />
-                  <Route
-                    exact
-                    path="/form"
-                    element={
-                      <>
-                        <PhoneBookForm
-                        />
-                      </>
-                    }
-                  />
-                  <Route
-                    exact
-                    path="/newsHeadlines"
-                    element={
-                      <>
-                        <NewsArticle
-                          theme={theme}
-                          pageSize={6}
-                          countryName="in"
-                          setProgress={setProgress} />
-                      </>
-                    }
-                  />
-                </>
-              </Routes>
-            </>
-          </Router>
+          <NoteState>
+            <Router>
+              <>
+                <Routes>
+                  <>
+                    <Route
+                      exact
+                      path="/"
+                      element={
+                        <>
+                          <Home
+                            theme={theme}
+                            showAlert={showAlert}
+                          />
+                        </>
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/contactUs"
+                      element={
+                        <>
+                          <ContactUs
+                            theme={theme}
+                          />
+                        </>
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/form"
+                      element={
+                        <>
+                          <PhoneBookForm
+                          />
+                        </>
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/newsHeadlines"
+                      element={
+                        <>
+                          <NewsArticle
+                            theme={theme}
+                            pageSize={6}
+                            countryName="in"
+                            setProgress={setProgress} />
+                        </>
+                      }
+                    />
+                  </>
+                </Routes>
+              </>
+            </Router>
+          </NoteState>
         </div>
       </div>
     </>
