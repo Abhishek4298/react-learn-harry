@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-
+import { useContext, useEffect } from "react";
 import noteContext from "../context/NoteContext";
-const NoteItems = () => {
-    const [note, setNote] = useState()
 
+const NoteItems = () => {
     const context = useContext(noteContext);
-    const { notes, getNotes } = context;
+    const { notes, getNotes, deleteNote } = context;
 
     useEffect(async () => {
         getNotes();
@@ -26,7 +24,7 @@ const NoteItems = () => {
                                             <h5 className="card-title">{el.title ? el.title : ""}</h5><br />
                                             <p className="card-text">{el.description ? el.description : ""}</p>
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                            <i class="fa fa-times" onClick={() => { deleteNote(el._id) }} aria-hidden="true"></i>
                                         </div>
                                     </div >
                                 </h2>
